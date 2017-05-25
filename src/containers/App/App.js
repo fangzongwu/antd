@@ -1,22 +1,53 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { DatePicker, message } from 'antd';
+import React from "react";
+import {Link} from "react-router";
+import { Menu, Icon, Switch } from 'antd';
+import "./App.css";
+const SubMenu = Menu.SubMenu;
+
 export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      date: '',
-    };
+	constructor(props) {
+		super(props);
+	}
+	state = {
+    theme: 'dark',
+    current: '1',
   }
-  handleChange(date) {
-    message.info('您选择的日期是: ' + date.toString());
-    this.setState({ date });
+  changeTheme = (value) => {
+    this.setState({
+      theme: value ? 'dark' : 'light',
+    });
+  }
+  handleClick = (e) => {
+    console.log('click ', e);
+    this.setState({
+      current: e.key,
+    });
   }
   render() {
     return (
-      <div >
-        <DatePicker onChange={value => this.handleChange(value)} />
-        <div >当前日期：{this.state.date.toString()}</div>
+      <div>
+        <aside className="aside-block">
+          <Menu
+          theme={this.state.theme}
+          onClick={this.handleClick}
+          style={{ width: 220 }}
+          selectedKeys={[this.state.current]}
+          mode="inline"
+          >
+            <SubMenu key="sub1" title={<span><Icon style={{ fontSize: 18 }} type="user" /><span style={{fontSize: 16}}>用户管理</span></span>}>
+              <Menu.Item key="1">
+                <Link to="/user">用户列表</Link>
+              </Menu.Item>
+
+              <Menu.Item key="2">角色配置</Menu.Item>
+            </SubMenu>
+          </Menu>
+        </aside>
+        <div className="main-block">
+          <div className="main-child">
+              {this.props.children}
+          </div>
+        </div>
       </div>
     );
   }

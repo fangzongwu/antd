@@ -18,18 +18,16 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx', 'css']
   },
   module: {
     loaders: [{
       test: /\.jsx?$/,
       loaders: ['babel'],
       include: path.join(__dirname, 'src')
-    },
-    {
+    },{
       test: /\.css$/,
-      loader: "style-loader!css-loader",
-      include: path.join(__dirname, 'src')
+      loader: "style!css"
     }]
   }
 };
