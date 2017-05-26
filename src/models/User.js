@@ -1,19 +1,40 @@
+"use sti"
+
 import React from "react";
-import {observable, autorun} from "mobx";
+import {observable, action, runInAction } from "mobx";
 
-const dataSource = observable([{
-        key: '0',
-        name: 'Edward King 0',
-        age: '32',
-        address: 'London, Park Lane no. 0',
-      }, {
-        key: '1',
-        name: 'Edward King 1',
-        age: '32',
-        address: 'London, Park Lane no. 1',
-      }]);
+class User {
+    @observable data = {
+        dataSource: []
+        };
+    @action create(url, data) {
+        fetch(url, data).then( function(response) {
+            return response.json();
+        }).then( function(jsonData) {
+            console.log(jsonData);
+        }).catch( function() {
+            console.log("出错啦");
+        })
+    };
+    @action fetchDataFromUrl() {
+        let _this = this;
+        fetch("http://localhost:8001/allinfo").then( function(response) {
+            return response.json();
+            }).then( function(jsonData) {
+                _this.data.dataSource.push({
+                    key: jsonData._id,
+                    name: jsonData.name,
+                    age: jsonData.age,
+                    address: jsonData.address
+                })
+                console.log(_this.data.dataSource.slice());
+            }).catch( function(){
+                console.log("出错啦");
+        })
 
-export default dataSource;
-// autorun( function() {dataSource.map(data => {
-//     data.age = '54'
-// })}) 
+    }
+}
+        
+
+const user = new User();
+export default user;

@@ -2,10 +2,10 @@ import React from "react";
 import { observer } from "mobx-react";
 import { Table, Input, Icon, Button, Popconfirm } from 'antd';
 import NewButton from "./NewButton";
-import dataSource from "../.././models/User";
+import user from "../.././models/User";
 import "./UserPage.css";
 
-
+const dataSource = user.data.dataSource;
 @observer
 class EditableCell extends React.Component {
   state = {
@@ -64,7 +64,9 @@ export default class EditableTable extends React.Component {
     };
   }
 
-
+  componentDidMount() {
+    user.fetchDataFromUrl();
+  }
 
   onDelete = (index) => {
     const dataSource = [...this.state.dataSource];
@@ -89,7 +91,7 @@ export default class EditableTable extends React.Component {
     return (
       <div>
         <NewButton />
-        <Button className="editable-add-btn" onClick={this.handleAdd}>添加</Button>
+        {/*<Button className="editable-add-btn" onClick={this.handleAdd}>添加</Button> */}
         <Table bordered dataSource={dataSource} columns={columns} />
 
       </div>

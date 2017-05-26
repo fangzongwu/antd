@@ -1,14 +1,14 @@
 import React from "react";
+import { observer } from "mobx";
 import { Modal, Button, Input, Form, message } from 'antd';
+import User from "../.././models/User";
 import "./UserPage.css";
 
 const FormItem = Form.Item;
+
 class NewButtonModal extends React.Component {
   state = {
     visible: false,
-    name: "房鸣鸣",
-    age: "32",
-    address: "房家凹"
   }
   showModal = () => {
     this.setState({
@@ -22,6 +22,14 @@ class NewButtonModal extends React.Component {
         message.error('请补全缺少字段');
       } else {
          console.log(values);
+
+
+         User.create("http://localhost:8001/addInfo", {
+            mode: "cors",
+            method: "POST", 
+            headers: {"Content-Type": "application/x-www-form-urlencoded"},
+            body: `name=${values.userName}&age=${values.userAge}&address=${values.userAddress}`
+          });
          resetFields();
           message.info('创建成功');
           this.handleCancel();
