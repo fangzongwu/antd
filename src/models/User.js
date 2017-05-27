@@ -1,7 +1,7 @@
 "use sti"
 
 import React from "react";
-import {observable, action, runInAction } from "mobx";
+import {observable, action, runInAction, autorun } from "mobx";
 
 class User {
     @observable data = {
@@ -16,23 +16,43 @@ class User {
             console.log("出错啦");
         })
     };
-    @action fetchDataFromUrl() {
-        let _this = this;
-        fetch("http://localhost:8001/allinfo").then( function(response) {
+    @action addList(insertOne) {
+        this.data.dataSource.push(insertOne);
+    }
+    // @action fetchDataFromUrl() {
+    //     let _this = this;
+    //     var obj;
+    //     fetch("http://192.168.56.1:8001/addAllInfo").then( function(response) {
+    //         return response.json();
+    //         }).then( function(jsonData) {  
+    //            jsonData.map(j => {
+    //                 obj = {
+    //                     key: j._id,
+    //                     name: j.name,
+    //                     age: j.age,
+    //                     address: j.address
+    //                 }
+    //                 _this.addList(obj);
+                    
+    //            })                          
+    //         }).catch( function(){
+    //             console.log("出错啦");
+    //     })
+    // }
+    @action async fetchDataFromUrl() {
+        const ret = await fetch("http://192.168.56.1:8001/addAllInfo").then( function(response) {
             return response.json();
-            }).then( function(jsonData) {
-                _this.data.dataSource.push({
-                    key: jsonData._id,
-                    name: jsonData.name,
-                    age: jsonData.age,
-                    address: jsonData.address
-                })
-                console.log(_this.data.dataSource.slice());
+            }).then( function(jsonData) {  
+                return jsonData;                         
             }).catch( function(){
                 console.log("出错啦");
         })
-
+        ret.map()
+        runInAction('update users list after fetch', () => {
+          this.data = Object.assign({}, ret);
+        });
     }
+
 }
         
 

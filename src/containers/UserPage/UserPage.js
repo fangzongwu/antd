@@ -5,14 +5,17 @@ import NewButton from "./NewButton";
 import user from "../.././models/User";
 import "./UserPage.css";
 
-const dataSource = user.data.dataSource;
+
 @observer
 class EditableCell extends React.Component {
   state = {
     value: this.props.value,
   }
+
+
   render() {
     const { value } = this.state;
+    const {dataSource} = user.data;
     return (
       <div className="editable-cell">
             <div className="editable-cell-text-wrapper">
@@ -23,7 +26,8 @@ class EditableCell extends React.Component {
   }
 }
 
-export default class EditableTable extends React.Component {
+@observer
+export class EditableTable extends React.Component {
   constructor(props) {
     super(props);
 
@@ -46,6 +50,7 @@ export default class EditableTable extends React.Component {
       title: '操作',
       dataIndex: 'operation',
       render: (text, record, index) => {
+        const {dataSource} = user.data;
         return (
           dataSource.length > 1 ?
           (
@@ -57,14 +62,12 @@ export default class EditableTable extends React.Component {
       },
     }];
 
-
-
     this.state = {
       count: 2,
     };
   }
-
-  componentDidMount() {
+  
+  componentWillMount() {
     user.fetchDataFromUrl();
   }
 
@@ -88,6 +91,8 @@ export default class EditableTable extends React.Component {
   }
   render() {
     const columns = this.columns;
+    const {dataSource} = user.data;
+    console.log(dataSource)
     return (
       <div>
         <NewButton />
@@ -98,3 +103,7 @@ export default class EditableTable extends React.Component {
     );
   }
 }
+
+export default EditableTable;
+
+

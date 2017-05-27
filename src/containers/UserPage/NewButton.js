@@ -22,17 +22,16 @@ class NewButtonModal extends React.Component {
         message.error('请补全缺少字段');
       } else {
          console.log(values);
-
-
-         User.create("http://localhost:8001/addInfo", {
+         User.create("http://192.168.56.1:8001/addInfo", {
             mode: "cors",
             method: "POST", 
             headers: {"Content-Type": "application/x-www-form-urlencoded"},
             body: `name=${values.userName}&age=${values.userAge}&address=${values.userAddress}`
           });
-         resetFields();
-          message.info('创建成功');
-          this.handleCancel();
+        resetFields();
+        message.info('创建成功');
+        this.handleCancel();
+
       }
     });
     this.setState({
