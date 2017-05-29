@@ -99,14 +99,13 @@ export class EditableTable extends React.Component {
   // }
   render() {
     const columns = this.columns;
-    const {dataSource} = user.data;
     // console.log(dataSource)
     return (
       <div>
         <SearchBox />
         <NewButton />
         {/*<Button className="editable-add-btn" onClick={this.handleAdd}>添加</Button> */}
-        <Table bordered dataSource={dataSource} columns={columns} />
+        <Table bordered dataSource={user.dataFilter} columns={columns} />
 
       </div>
     );

@@ -8,10 +8,10 @@ class User {
         dataSource: []
         };
     @observable filter = "";
-    // @computed get dataFilter() {
-    //     var matchesFilter = new RegExp(this.filter, "i");
-    //     return this.data.dataSource.filter(todo => !this.filter || matchesFilter.test(todo.name));
-    // }
+    @computed get dataFilter() {
+        var matchesFilter = new RegExp(this.filter, "i");
+        return this.data.dataSource.filter(todo => !this.filter || matchesFilter.test(todo.name));
+    }
 
     @action create(url, data) {
         fetch(url, data).then( function(response) {

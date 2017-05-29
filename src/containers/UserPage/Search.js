@@ -9,9 +9,8 @@ export default  class SearchBox extends React.Component {
 		super(props);
 	};
 	handleSearch(val) {
-		user.data.dataSource = user.dataFilter;
+		user.filter = val;
 	}
-
 	render() {
 		return <div className="mar-bottom">
 			<Row>
@@ -30,7 +29,7 @@ export default  class SearchBox extends React.Component {
 	      		<Search
 				placeholder="输入姓名进行检索"
 				style={{ width: 400, height: 35 }}
-				onSearch={value => console.log(value)}
+				onSearch={this.handleSearch}
 				/>
 		      </Col>
 		    </Row>	
