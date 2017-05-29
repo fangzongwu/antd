@@ -1,3 +1,10 @@
 .int-block Input{
 	margin: 5px auto;
 }
+.mar-bottom {
+	margin-bottom: 15px;
+	font-size: 13px;
+}
+.text-a {
+	text-align: right;
+}

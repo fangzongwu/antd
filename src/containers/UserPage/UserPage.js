@@ -3,8 +3,8 @@ import { observer } from "mobx-react";
 import { Table, Input, Icon, Button, Popconfirm } from 'antd';
 import NewButton from "./NewButton";
 import user from "../.././models/User";
+import SearchBox from "./Search";
 import "./UserPage.css";
-
 
 @observer
 class EditableCell extends React.Component {
@@ -52,7 +52,7 @@ export class EditableTable extends React.Component {
       render: (text, record, index) => {
         const {dataSource} = user.data;
         return (
-          dataSource.length > 1 ?
+          dataSource.length >= 1 ?
           (
             <Popconfirm title="确定要删除吗?" onConfirm={() => this.onDelete(index)}>
               <a href="#">删除</a>
@@ -62,39 +62,48 @@ export class EditableTable extends React.Component {
       },
     }];
 
-    this.state = {
-      count: 2,
-    };
+    // this.state = {
+    //   count: 2,
+    // };
   }
   
-  componentWillMount() {
-    user.fetchDataFromUrl();
+  componentDidMount() {
+   user.fetchDataFromUrl();
   }
 
   onDelete = (index) => {
-    const dataSource = [...this.state.dataSource];
-    dataSource.splice(index, 1);
-    this.setState({ dataSource });
+    // const dataSource = [...this.state.dataSource];
+    // dataSource.splice(index, 1);
+    // this.setState({ dataSource });
+    const {dataSource} = user.data;
+    user.create("http://localhost:8001/deleteInfo", {
+            mode: "cors",
+            method: "POST", 
+            headers: {"Content-Type": "application/x-www-form-urlencoded"},
+            body: `key=${dataSource[index].key}`
+          });
+    user.fetchDataFromUrl();
   }
-  handleAdd = () => {
-    const { count, dataSource } = this.state;
-    const newData = {
-      key: count,
-      name: `Edward King ${count}`,
-      age: 32,
-      address: `London, Park Lane no. ${count}`,
-    };
-    this.setState({
-      dataSource: [...dataSource, newData],
-      count: count + 1,
-    });
-  }
+  // handleAdd = () => {
+  //   const { count, dataSource } = this.state;
+  //   const newData = {
+  //     key: count,
+  //     name: `Edward King ${count}`,
+  //     age: 32,
+  //     address: `London, Park Lane no. ${count}`,
+  //   };
+  //   this.setState({
+  //     dataSource: [...dataSource, newData],
+  //     count: count + 1,
+  //   });
+  // }
   render() {
     const columns = this.columns;
     const {dataSource} = user.data;
-    console.log(dataSource)
+    // console.log(dataSource)
     return (
       <div>
+        <SearchBox />
         <NewButton />
         {/*<Button className="editable-add-btn" onClick={this.handleAdd}>添加</Button> */}
         <Table bordered dataSource={dataSource} columns={columns} />
