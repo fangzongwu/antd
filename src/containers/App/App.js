@@ -1,10 +1,14 @@
 import React from "react";
 import {Link} from "react-router";
 import { Menu, Icon, Switch } from 'antd';
+import { observer } from "mobx-react";
+import Login from "./../Login/Login";
+import User from "../.././models/User";
 import "./App.css";
 const SubMenu = Menu.SubMenu;
 
-export default class App extends React.Component {
+@observer
+class App extends React.Component {
 	constructor(props) {
 		super(props);
 	}
@@ -23,7 +27,8 @@ export default class App extends React.Component {
       current: e.key,
     });
   }
-  render() {
+
+  renderAuthenticatedPage() {
     return (
       <div>
         <aside className="aside-block">
@@ -52,4 +57,16 @@ export default class App extends React.Component {
       </div>
     );
   }
+
+
+  render() {
+    const { isAuthenticated } = User.auth;
+    return (
+        <div>
+          {isAuthenticated? this.renderAuthenticatedPage() : <Login/>}
+        </div>
+      )
+  }
 }
+
+export default App;

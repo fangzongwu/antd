@@ -32,8 +32,8 @@ class NewButtonModal extends React.Component {
             body: `name=${userName}&age=${userAge}&address=${userAddress}`
           });
         resetFields();
-        User.fetchDataFromUrl();
         message.info('创建成功');
+        // User.fetchDataFromUrl();
         this.handleCancel();
 
       }

@@ -82,7 +82,7 @@ export class EditableTable extends React.Component {
             headers: {"Content-Type": "application/x-www-form-urlencoded"},
             body: `key=${dataSource[index].key}`
           });
-    user.fetchDataFromUrl();
+    //user.fetchDataFromUrl();
   }
   // handleAdd = () => {
   //   const { count, dataSource } = this.state;

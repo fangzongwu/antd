@@ -1,0 +1,18 @@
+.login-bg {
+	background: rgba(92,172,238, .9);
+	position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.login-form input.ant-input{
+	height: 35px;
+	min-height: 35px;
+}
+.block-p {
+	display: block;
+	width: 90%;
+	margin-top: 10px;
+	margin-left: 5%;
+}

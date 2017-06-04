@@ -1,13 +1,16 @@
-"use sti"
+"use strict";
 
 import React from "react";
 import {observable, action, runInAction, autorun, computed } from "mobx";
-
+import Cookie from "js-cookie";
 class User {
     @observable data = {
         dataSource: []
         };
     @observable filter = "";
+    @observable auth = {
+        isAuthenticated: Cookie.get("access_name") ? true : false
+    }
     @computed get dataFilter() {
         var matchesFilter = new RegExp(this.filter, "i");
         return this.data.dataSource.filter(todo => !this.filter || matchesFilter.test(todo.name));
@@ -18,8 +21,12 @@ class User {
             return response.json();
         }).then( function(jsonData) {
            // console.log(jsonData);
+            // this.fetchDataFromUrl();
         }).catch( function() {
             console.log("出错啦");
+        })
+        runInAction('create success', () => {
+            this.fetchDataFromUrl();
         })
     };
     @action async fetchDataFromUrl() {
@@ -41,6 +48,37 @@ class User {
             })
         runInAction('update users list after fetch', () => {
           this.data.dataSource = arr;
+        });
+    };
+    // @action loginTo(url, data) {
+    //     fetch(url, data).then( function(response) {
+    //         return response.json();
+    //     }).then( function(jsonData) {
+    //         if (jsonData == -1){
+    //             console.log("没有该账户");
+    //             return;
+    //         }else{
+    //             console.log(jsonData[0].name);
+    //             Cookie.set("access_name", jsonData[0].name);
+    //             this.auth.isAuthenticated = true;
+    //         }
+    //     }).catch( function() {
+    //         console.log("出错啦");
+    //     })
+               
+    // }
+    @action async loginTo(url, data) {
+        const lo = await fetch(url, data).then( function(response) {
+            return response.json();
+            }).then( function(jsonData) {  
+                return jsonData;                         
+            }).catch( function(){
+                console.log("出错啦");
+            })
+
+        runInAction('login success', () => {
+            Cookie.set("access_name", lo[0].name);
+            this.auth.isAuthenticated = true;          
         });
     };
 
