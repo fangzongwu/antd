@@ -1,8 +1,9 @@
 "use strict";
 
 import React from "react";
-import {observable, action, runInAction, autorun, computed } from "mobx";
+import {observable, action, runInAction, computed } from "mobx";
 import Cookie from "js-cookie";
+
 class User {
     @observable data = {
         dataSource: []
@@ -13,7 +14,7 @@ class User {
     }
     @computed get dataFilter() {
         var matchesFilter = new RegExp(this.filter, "i");
-        return this.data.dataSource.filter(todo => !this.filter || matchesFilter.test(todo.name));
+        return this.data.dataSource.filter(todo => !this.filter || matchesFilter.test(todo.name) || matchesFilter.test(todo.age) || matchesFilter.test(todo.address));
     }
 
     @action create(url, data) {
@@ -30,7 +31,7 @@ class User {
         })
     };
     @action async fetchDataFromUrl() {
-        const ret = await fetch("http://localhost:8001/allinfo").then( function(response) {
+        const ret = await fetch("http://localhost:8001/allInfo").then( function(response) {
             return response.json();
             }).then( function(jsonData) {  
                 return jsonData;                         
@@ -71,12 +72,17 @@ class User {
         const lo = await fetch(url, data).then( function(response) {
             return response.json();
             }).then( function(jsonData) {  
-                return jsonData;                         
+                return jsonData;  
+                console.log(jsonData)                       
             }).catch( function(){
                 console.log("出错啦");
             })
 
         runInAction('login success', () => {
+            if(lo == -1) {
+                alert("没有该账户");
+                return;
+            }
             Cookie.set("access_name", lo[0].name);
             this.auth.isAuthenticated = true;          
         });

@@ -8,3 +8,13 @@
 .text-a {
 	text-align: right;
 }
+.a-modal .ant-modal-content {
+	width: 1000px;
+	margin-left: -200px;
+} 
+.a-modal .ant-form-item {
+	width: 30%;
+}
+.a-modal .ant-form-item-control-wrapper {
+	width: 100%;
+}

@@ -4,6 +4,7 @@ import { Table, Input, Icon, Button, Popconfirm } from 'antd';
 import NewButton from "./NewButton";
 import user from "../.././models/User";
 import SearchBox from "./Search";
+import UpdateData from "./update"; 
 import "./UserPage.css";
 
 @observer
@@ -54,9 +55,13 @@ export class EditableTable extends React.Component {
         return (
           dataSource.length >= 1 ?
           (
-            <Popconfirm title="确定要删除吗?" onConfirm={() => this.onDelete(index)}>
-              <a href="#">删除</a>
-            </Popconfirm>
+            <span>
+              {/*<a href="#" onClick={() => this.updateState(index)} >编辑</a>*/}
+              <UpdateData store={index} />
+              <Popconfirm title="确定要删除吗?" onConfirm={() => this.onDelete(index)}>
+                <a href="#" style={{marginLeft: 15}}>删除</a>
+              </Popconfirm>
+            </span>        
           ) : null
         );
       },
@@ -97,6 +102,14 @@ export class EditableTable extends React.Component {
   //     count: count + 1,
   //   });
   // }
+  updateState = (index) => {
+    console.log(index);
+
+
+  }
+
+
+
   render() {
     const columns = this.columns;
     // console.log(dataSource)

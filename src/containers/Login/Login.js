@@ -1,12 +1,13 @@
 import React from "react";
 import { Form, Icon, Input, Button, Checkbox, Row, Col } from 'antd';
+import { observer } from "mobx-react";
 import User from "../.././models/User";
 import "./Login.css";
 
 
 const FormItem = Form.Item;
 
-
+@observer
 class Login extends React.Component {
 	constructor(props) {
 		super(props);
@@ -34,7 +35,7 @@ class Login extends React.Component {
     	const { getFieldDecorator } = this.props.form;
 		return <div className="login-bg">
 			<Row>
-		      <Col span={6} style={{marginLeft: 500, marginTop: 250}}>
+		      <Col span={4} className="col-span">
   				<div>
 					<Form onSubmit={this.handleSubmit} className="login-form">
 				        <FormItem>

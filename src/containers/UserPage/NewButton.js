@@ -41,12 +41,12 @@ class NewButtonModal extends React.Component {
     this.setState({
       confirmLoading: true,
     });
-    setTimeout(() => {
-      this.setState({
-        visible: false,
-        confirmLoading: false,
-      });
-    }, 2000);
+    // setTimeout(() => {
+    //   this.setState({
+    //     visible: false,
+    //     confirmLoading: false,
+    //   });
+    // }, 2000);
   }
   handleCancel = () => {
     console.log('Clicked cancel button');

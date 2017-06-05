@@ -1,10 +1,12 @@
 import React from "react";
 import { Popconfirm, Breadcrumb, Icon, Input, Row, Col } from "antd";
+import {observer} from "mobx-react";
 import user from "../.././models/User";
 import "./UserPage.css";
 
 const Search = Input.Search;
-export default  class SearchBox extends React.Component {
+@observer
+class SearchBox extends React.Component {
 	constructor(props) {
 		super(props);
 	};
@@ -36,3 +38,5 @@ export default  class SearchBox extends React.Component {
 		</div>
 	}
 } 
+
+export default SearchBox;
