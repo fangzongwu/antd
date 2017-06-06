@@ -33,7 +33,7 @@ class UpdateData extends React.Component {
 	        let userName = encodeURIComponent(values.userName, "utf-8");
          	let userAge = encodeURIComponent(values.userAge, "utf-8");
          	let userAddress = encodeURIComponent(values.userAddress, "utf-8");
-         	User.create("http://localhost:8001/updateInfo", {
+         	User.create("http://192.168.1.53:8001/updateInfo", {
             	mode: "cors",
             	method: "POST",
             	headers: {"Content-Type": "application/x-www-form-urlencoded"},
@@ -41,7 +41,6 @@ class UpdateData extends React.Component {
           	});
 	      }
 	    });
-	    // resetFields();
   	}
   	handleCancel = (e) => {
 	    console.log(e);
@@ -66,7 +65,7 @@ class UpdateData extends React.Component {
 	          <Form layout="inline" onSubmit={this.handleOk}>
 		        <FormItem>
 	          		{getFieldDecorator('userName', {
-		            rules: [{ required: true, message: 'Please input your username!' }],
+		            rules: [{ required: true, message: '姓名不能为空!' }],
 		            initialValue: dataSource[count].name,
 		          	})(
 		           		<Input className="a-int" placeholder="请输入姓名" disabled />
@@ -74,7 +73,7 @@ class UpdateData extends React.Component {
 	          	</FormItem>
 	          	<FormItem>
 	          		{getFieldDecorator('userAge', {
-		            rules: [{ required: true, message: 'Please input your userAge!' }],
+		            rules: [{ required: true, message: '年龄不能为空!' }],
 		            initialValue: dataSource[count].age,
 		          	})(
 		           		<Input placeholder="请输入年龄" />
@@ -82,7 +81,7 @@ class UpdateData extends React.Component {
 	          	</FormItem>
 	          	<FormItem>
 	          		{getFieldDecorator('userAddress', {
-		            rules: [{ required: true, message: 'Please input your userAddress!' }],
+		            rules: [{ required: true, message: '地址不能为空!' }],
 		            initialValue: dataSource[count].address,
 		          	})(
 		           		<Input placeholder="请输入地址" />

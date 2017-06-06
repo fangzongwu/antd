@@ -31,7 +31,7 @@ class User {
         })
     };
     @action async fetchDataFromUrl() {
-        const ret = await fetch("http://localhost:8001/allInfo").then( function(response) {
+        const ret = await fetch("http://192.168.1.53:8001/addAllInfo").then( function(response) {
             return response.json();
             }).then( function(jsonData) {  
                 return jsonData;                         

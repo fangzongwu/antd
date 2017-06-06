@@ -21,7 +21,7 @@ class Login extends React.Component {
 
 	      if (!err) {
 	        console.log('Received values of form: ', values);
-	        User.loginTo("http://localhost:8001/userLogin", {
+	        User.loginTo("http://192.168.1.53:8001/userLogin", {
             	mode: "cors",
             	method: "POST",
             	headers: {"Content-Type": "application/x-www-form-urlencoded"},

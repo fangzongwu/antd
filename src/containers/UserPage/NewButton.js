@@ -25,7 +25,7 @@ class NewButtonModal extends React.Component {
          let userName = encodeURIComponent(values.userName, "utf-8");
          let userAge = encodeURIComponent(values.userAge, "utf-8");
          let userAddress = encodeURIComponent(values.userAddress, "utf-8");
-         User.create("http://localhost:8001/addInfo", {
+         User.create("http://192.168.1.53:8001/addInfo", {
             mode: "cors",
             method: "POST",
             headers: {"Content-Type": "application/x-www-form-urlencoded"},

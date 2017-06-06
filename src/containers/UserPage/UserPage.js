@@ -81,7 +81,7 @@ export class EditableTable extends React.Component {
     // dataSource.splice(index, 1);
     // this.setState({ dataSource });
     const {dataSource} = user.data;
-    user.create("http://localhost:8001/deleteInfo", {
+    user.create("http://192.168.1.53:8001/deleteInfo", {
             mode: "cors",
             method: "POST", 
             headers: {"Content-Type": "application/x-www-form-urlencoded"},
