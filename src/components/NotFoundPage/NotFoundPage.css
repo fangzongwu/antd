@@ -1,1 +1,10 @@
-NotFoundPage.css
+.not-page {
+	font-size: 20px;
+	text-align: center;
+	margin-left: 55%;
+	margin-top: 12%;
+}
+.not-page img{
+	display: block;
+	width: 500px;
+}

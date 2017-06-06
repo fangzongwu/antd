@@ -56,7 +56,8 @@ export class EditableTable extends React.Component {
           dataSource.length >= 1 ?
           (
             <span>
-              {/*<a href="#" onClick={() => this.updateState(index)} >编辑</a>*/}
+              {/*<a href="#" onClick={() => this.updateState(in
+              dex)} >编辑</a>*/}
               <UpdateData store={index} />
               <Popconfirm title="确定要删除吗?" onConfirm={() => this.onDelete(index)}>
                 <a href="#" style={{marginLeft: 15}}>删除</a>

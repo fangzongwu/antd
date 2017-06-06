@@ -37,10 +37,12 @@
     "css-loader": "^0.28.2",
     "eslint": "^2.13.1",
     "eslint-plugin-react": "^5.1.1",
+    "file-loader": "^0.11.2",
     "js-cookie": "^2.1.4",
     "react-hot-loader": "^3.0.0-beta.2",
     "react-router": "2.7.0",
     "style-loader": "^0.18.1",
+    "url-loader": "^0.5.8",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   },

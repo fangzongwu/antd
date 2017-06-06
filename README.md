@@ -24,6 +24,6 @@ open http://localhost:3000
 
 ### 注意事项：
 * antd的css样式正常显示: npm install babel-plugin-import --save-dev; 然后在.babelrc中的"plugins"添加 ["import", { "libraryName": "antd", "style": "css" }](详见https://ant.design/docs/react/getting-started-cn)。
-*配置ansy await：
+* 配置ansy await：
 npm install babel-polyfill --save-dev;在webpack.config.js中进行配置，在entry中添加 "babel-polyfill";
-*一般是在componentDidMount中进行ajax数据调取；
+* 一般是在componentDidMount中进行ajax数据调取；

@@ -29,6 +29,9 @@ module.exports = {
     },{
       test: /\.css$/,
       loader: "style!css"
+    },{
+      test: /\.(jpe?g|png|gif)$/, 
+      loader: 'url-loader?limit=8192' 
     }]
   }
 };

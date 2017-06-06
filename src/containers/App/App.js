@@ -36,8 +36,8 @@ class App extends React.Component {
           theme={this.state.theme}
           onClick={this.handleClick}
           style={{ width: 220 }}
-          selectedKeys={[this.state.current]}
-          defaultOpenKeys={['sub1']}
+          // selectedKeys={[this.state.current]}
+          // defaultOpenKeys={['sub1']}
           mode="inline"
           >
             <SubMenu key="sub1" title={<span><Icon style={{ fontSize: 18 }} type="user" /><span style={{fontSize: 16}}>用户管理</span></span>}>
@@ -45,7 +45,9 @@ class App extends React.Component {
                 <Link to="/user">用户列表</Link>
               </Menu.Item>
 
-              <Menu.Item key="2">角色配置</Menu.Item>
+              <Menu.Item key="2">
+                <Link to="/js">角色配置</Link>
+              </Menu.Item>
             </SubMenu>
           </Menu>
         </aside>
@@ -54,6 +56,9 @@ class App extends React.Component {
               {this.props.children}
           </div>
         </div>
+        <footer className="footer-bar">
+          <span>版权所有@御邦医通数字化健康服务有限公司</span>
+        </footer>
       </div>
     );
   }

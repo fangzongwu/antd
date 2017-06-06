@@ -1,3 +1,20 @@
 .h-Page {
 	font-size: 14px;
 }
+.block-col {
+	margin: 30px;
+	height: 250px;
+	border-radius: 13px;
+	box-shadow: 0 0 5px #333;
+	color: #fff;
+	line-height: 250px;
+	text-align: center;
+}
+.block-one {
+	background: rgba(92, 172, 238, .8);
+	box-shadow: 0 0 5px #5CACEE;
+}
+.block-two {
+	background: rgba(139, 26, 26, .8);
+	box-shadow: 0 0 5px #8B1A1A;
+}
