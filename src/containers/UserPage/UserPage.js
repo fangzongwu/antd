@@ -67,10 +67,6 @@ export class EditableTable extends React.Component {
         );
       },
     }];
-
-    // this.state = {
-    //   count: 2,
-    // };
   }
   
   componentDidMount() {
@@ -78,9 +74,6 @@ export class EditableTable extends React.Component {
   }
 
   onDelete = (index) => {
-    // const dataSource = [...this.state.dataSource];
-    // dataSource.splice(index, 1);
-    // this.setState({ dataSource });
     const {dataSource} = user.data;
     user.create("http://192.168.1.53:8001/deleteInfo", {
             mode: "cors",
@@ -88,21 +81,7 @@ export class EditableTable extends React.Component {
             headers: {"Content-Type": "application/x-www-form-urlencoded"},
             body: `key=${dataSource[index].key}`
           });
-    //user.fetchDataFromUrl();
   }
-  // handleAdd = () => {
-  //   const { count, dataSource } = this.state;
-  //   const newData = {
-  //     key: count,
-  //     name: `Edward King ${count}`,
-  //     age: 32,
-  //     address: `London, Park Lane no. ${count}`,
-  //   };
-  //   this.setState({
-  //     dataSource: [...dataSource, newData],
-  //     count: count + 1,
-  //   });
-  // }
   updateState = (index) => {
     console.log(index);
 
@@ -110,15 +89,12 @@ export class EditableTable extends React.Component {
   }
 
 
-
   render() {
     const columns = this.columns;
-    // console.log(dataSource)
     return (
       <div>
         <SearchBox />
         <NewButton />
-        {/*<Button className="editable-add-btn" onClick={this.handleAdd}>添加</Button> */}
         <Table bordered dataSource={user.dataFilter} columns={columns} />
 
       </div>

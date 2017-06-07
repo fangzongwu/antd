@@ -18,3 +18,10 @@
 	background: rgba(139, 26, 26, .8);
 	box-shadow: 0 0 5px #8B1A1A;
 }
+.blocker-appear {
+	opacity: 0.01;
+}
+.blocker-appear.blocker-appear-active {
+	opacity: 1;
+	transition: opacity .5s ease-in-out;
+}

@@ -29,6 +29,7 @@ class App extends React.Component {
   }
 
   renderAuthenticatedPage() {
+    // const { visibel } = User.listV;
     return (
       <div>
         <aside className="aside-block">
@@ -36,8 +37,8 @@ class App extends React.Component {
           theme={this.state.theme}
           onClick={this.handleClick}
           style={{ width: 220 }}
-          // selectedKeys={[this.state.current]}
-          // defaultOpenKeys={['sub1']}
+          selectedKeys={[this.state.current]}
+          defaultOpenKeys={['sub1']}
           mode="inline"
           >
             <SubMenu key="sub1" title={<span><Icon style={{ fontSize: 18 }} type="user" /><span style={{fontSize: 16}}>用户管理</span></span>}>

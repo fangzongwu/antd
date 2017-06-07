@@ -59,7 +59,7 @@ class NewButtonModal extends React.Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div>
-        <Button type="primary" onClick={this.showModal}>添加</Button>
+        <Button type="primary" onClick={this.showModal} className="mar-b">添加</Button>
         <Modal title="添加用户"
           visible={visible}
           onOk={this.handleOk}
